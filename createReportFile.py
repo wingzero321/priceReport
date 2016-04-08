@@ -125,7 +125,7 @@ def createReport(conn,series,dateList):
     #创建sheet"网站经销商数量变化分析"
     sheet = wb.create_sheet(u'网站经销商数量变化分析', 1)
     createAnalysisOfWebsiteDealer(sheet, conn, series, dateList)
-    #创建sheet"网站报价均值分析"
+    #创建sheet"网站报价均值分析  "
     sheet = wb.create_sheet(u'网站报价均值分析', 2)
     createAnalysisOfNetworkOffer(sheet, conn, series, dateList)
     #创建sheet"大区报价分析"
