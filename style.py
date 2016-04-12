@@ -8,8 +8,11 @@ sys.setdefaultencoding('utf8')
 reload(sys)
 
 class Style:
+    #Style的构造函数 Style(*style) 为不定参函数
+    #当构造函数无参时，使用默认的样式
+    #当构造函数参数有一个参数时，采用xlsxFormatSetting中style中对应的样式，无定义部分采用默认样式
+    #当构造函数参数出现其他情况，采用默认的样式
     def __init__(self, *style):
-
         #默认字体为Arial，8，不加粗，黑色
         #默认背景色为空，默认颜色为白色
         #默认文本样式为水平居中，垂直居中，自动换行

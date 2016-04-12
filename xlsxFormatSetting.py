@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 
 import sys
 
@@ -6,15 +6,51 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 reload(sys)
 
+server_ip = '120.26.38.147'
+server_user = 'minkedong'
+server_passwd = 'mkd'
+server_port = 22
+
+sender = 'lei.wang@mathartsys.com'
+receiver = ['peter.zhang@mathartsys.com', 'huan.yang@mathartsys.com', 'lei.wang@mathartsys.com']
+smtpserver = 'smtp.qiye.163.com'
+username = 'lei.wang@mathartsys.com'
+password = 'Walle19930215'
+
 filePath = 'D:\\project\\project-carNew\\priceReport'
+# filePath = 'D:\\work\\priceReport'
+linPath = '/home/minkedong/py_env/Malibu/daily_data'
 
 markValue = {'默认值': 2000,
-             '创酷': {'2014款 1.4T 手动两驱舒适型': 2500},
-             '乐风RV': {},
-             '经典科鲁兹': {},
-             '迈锐宝XL': {},
-             '迈锐宝': {},
-             '全新科鲁兹': {},
+             '创酷': {'2016款 1.4T 手动两驱舒适天窗版': 8000, 
+                      '2016款 1.4T 自动两驱豪华型': 12000,
+                      '2016款 1.4T 自动两驱舒适天窗版':10000,
+                      '2016款 1.4T 自动四驱旗舰型':0},
+             '乐风RV': {'2016款 1.5L 手动畅行版':2000,
+                        '2016款 1.5L 自动畅行版':2000,
+                        '2016款 1.5L 自动智行版':2000,
+                        '2016款 1.5L 自动趣行版':2000},
+             '经典科鲁兹': {'2015款 1.5L 经典 SE AT':14000,
+                            '2015款 1.5L 经典 SE MT':14000,
+                            '2015款 1.5L 经典 SL MT':12000},
+             '迈锐宝XL': {'2016款 1.5T 双离合锐驰版':0,
+                          '2016款 1.5T 双离合锐享版':0,
+                          '2016款 1.5T 双离合锐尚版':0,
+                          '2016款 1.5T 双离合锐耀版':0,
+                          '2016款 2.5L 自动锐尚版':0,
+                          '2016款 2.5L 自动锐尊版':0},
+             '迈锐宝': {'2016款 1.6T 自动舒适版':27000,
+                        '2016款 1.6T 自动豪华版':27000,
+                        '2016款 2.0L 自动舒适版':25000,
+                        '2016款 2.0L 自动豪华版':27000,
+                        '2016款 2.4L 自动豪华版':27000,
+                        '2016款 2.4L 自动旗舰版':27000},
+             '全新科鲁兹': {'2016款 1.4T DCG豪华版':16000,
+                            '2016款 1.4T DCG旗舰版':0,
+                            '2016款 1.5L 手动精英版':16000,
+                            '2016款 1.5L 手动时尚版':0,
+                            '2016款 1.5L 自动豪华版':16000,
+                            '2016款 1.5L 自动时尚天窗版':16000},
             }
 markvalueColor = 'FFC7CE'
 
@@ -24,10 +60,15 @@ fieldList = ['source', 'price', 'promotion', 'promotion_url', 'p_date', 'agency_
              'promotion_price', 'p_level', 'model_year', 'source2', 'MSRP', 'gap', 'source_id', 'mac', 'is_4s',
              'dealerName']
 
-carseries = ['创酷', '乐风RV', '经典科鲁兹', '迈锐宝XL', '迈锐宝', '全新科鲁兹']
+carseries = {'创酷': '<',
+			 '乐风RV': '<',
+			 '经典科鲁兹': '<',
+			 '迈锐宝XL': '>',
+			 '迈锐宝': '<',
+			 '全新科鲁兹': '<'}
 
 websiteDealer = ['汽车之家（经销商入口）', '汽车之家（报价入口）','易车（经销商入口）', '易车（报价入口）',
-                 '太平洋汽车', '爱卡汽车', '新浪汽车', '搜狐汽车']
+                 '太平洋汽车', '爱卡汽车', '新浪汽车', '搜狐汽车', '凤凰网']
 
 area = ['雪佛兰1区', '雪佛兰2区', '雪佛兰3区', '雪佛兰4区', '雪佛兰5区', '雪佛兰6区', '雪佛兰7区', '雪佛兰8区']
 
@@ -64,5 +105,5 @@ style = {'标题':  {'font_family': '微软雅黑', 'font_size': 11, 'font_blod'
                                     'patternFill_color': 'DDEBF7'
                     },
          '奇数行':  {'font_family': '宋体', 'font_size': 11, 'font_blod': False, 'font_color': 'FFFFFF',
-                    },
+                    }
          }

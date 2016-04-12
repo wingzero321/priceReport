@@ -38,7 +38,8 @@ def uploadToOracle(dataTime):
     sql = 'delete from price_report where SUBSTR(P_DATE, 0, 10) = \'' + dataTime + '\''
     c.execute(sql)
     conn.commit()
-
+	
+    isCompleted = True
     for line in reader:
         if lineNum > 0:
             values = []
@@ -50,19 +51,28 @@ def uploadToOracle(dataTime):
                 else:
                     valueStr += ',:1'
             values[1] = int(round(float(values[1]), -2))
-            c.execute('insert into price_report values(' + valueStr + ')', values)
+            if len(values) == len(settings.fieldList):
+            	c.execute('insert into price_report values(' + valueStr + ')', values)
+            else:
+            	isCompleted == False
+            	break
         lineNum += 1
         print lineNum
-    conn.commit()
+    if isCompleted:
+    	conn.commit()
+    	print 'upload File: ' + readFilePath + " Success!"
+    else:
+    	print 'File incomplete'
     c.close()
     conn.close()
-    print 'upload File: ' + readFilePath + " Success!"
+    
 
 if __name__ == '__main__':
     if len(sys.argv) == 1:
         localtime = time.strftime('%Y-%m-%d',time.localtime(time.time()))
         downloadFile(localtime)
         uploadToOracle(localtime)
+
     elif len(sys.argv) == 4 and sys.argv[1] == 'full':
         startTime = datetime.datetime.strptime(sys.argv[2], '%Y-%m-%d')
         endTime = time.mktime(time.strptime(sys.argv[3], '%Y-%m-%d'))

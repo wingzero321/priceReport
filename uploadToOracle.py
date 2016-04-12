@@ -7,14 +7,21 @@ import time
 import datetime
 import os
 import xlsxFormatSetting as settings
+import downloadUtil
 
 reload(sys)
 sys.setdefaultencoding('utf8')
 reload(sys)
 
+def downloadFile(dataTime):
+    readFilename = settings.filePath + '\\data\\price_Malibu_' + dataTime + '_new.csv'
+    print 'start: download file ' + readFilename
+    downloadUtil.update_table(readFilename)
+    print 'download success'
+
 def uploadToOracle(dataTime):
     readFilePath = settings.filePath + '\\data\\price_Malibu_' + dataTime + '_new.csv'
-    print readFilePath
+    update_table("praiseAndBBS_cate_detail_0.csv", "praiseAndBBS", 0)
     if os.path.exists(readFilePath):
         print 'Begin upload File: ' + readFilePath
     else:
@@ -43,8 +50,6 @@ def uploadToOracle(dataTime):
             valueStr = ''
             for cell in line:
                 values.append(cell)
-                print cell
-                print cell.encode('gbk')
                 if len(valueStr) == 0:
                     valueStr += ':1'
                 else:
@@ -61,6 +66,7 @@ def uploadToOracle(dataTime):
 if __name__ == '__main__':
     if len(sys.argv) == 1:
         localtime = time.strftime('%Y-%m-%d',time.localtime(time.time()))
+        downloadFile(localtime)
         uploadToOracle(localtime)
     elif len(sys.argv) == 4 and sys.argv[1] == 'full':
         startTime = datetime.datetime.strptime(sys.argv[2], '%Y-%m-%d')
@@ -68,7 +74,9 @@ if __name__ == '__main__':
         while time.mktime(startTime.timetuple()) <= endTime:
             dataTime = startTime.strftime('%Y-%m-%d')
             uploadToOracle(dataTime)
+            uploadToOracle(dataTime)
             startTime += datetime.timedelta(days = 1)
     else:
         for i in range(1, len(sys.argv)):
+            uploadToOracle(sys.argv[i])
             uploadToOracle(sys.argv[i])
