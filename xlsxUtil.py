@@ -319,7 +319,7 @@ class XlsxUtil:
               'from ( select cartype_name, source, price, msrp ' \
                         'from price_report ' + wheresql + ' ) group by cartype_name, source'
 
-        print type , sql.encode('gbk') , wheresql
+        # print type , sql.encode('gbk') , wheresql
 
 
         cursor.execute(sql, values)
