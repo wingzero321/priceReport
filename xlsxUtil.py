@@ -598,7 +598,7 @@ class XlsxUtil:
         elif type == 'all_autohome':
             title = '4S店,直营店,卫星店 - 网站报价均值分析(汽车之家与易车)'
         else:
-            title = '未匹配经销商名称 - 网站报价均值分析（汽车之家与易车）'
+            title = '未匹配经销商名称 - 网站报价均值分析(汽车之家与易车)'
         rowNum = self.findCellRowNumByValue(colNum, title)
 
         if rowNum != -1:
