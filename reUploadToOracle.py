@@ -80,7 +80,7 @@ if __name__ == '__main__':
             dataTime = startTime.strftime('%Y-%m-%d')
             uploadToOracle(dataTime)
             uploadToOracle(dataTime)
-            startTime += datetime.timedelta(days = 1)
+            startTime += datetime.timedelta(days= 1)
     else:
         for i in range(1, len(sys.argv)):
             uploadToOracle(sys.argv[i])

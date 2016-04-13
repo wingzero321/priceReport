@@ -31,15 +31,17 @@ def sendMail():
         msg.attach(att1)
 
     #加邮件头
-    msg['to'] = 'peter.zhang@mathartsys.com'
+    strTo = ['peter.zhang@mathartsys.com', 'huan.yang@mathartsys.com']
+    msg['to']=','.join(strTo)
+    # msg['to'] = 'peter.zhang@mathartsys.com'
     msg['from'] = 'peter.zhang@mathartsys.com'
     msg['subject'] = '雪佛兰新车上市日报'.encode('GBK')
     #发送邮件
     try:
         server = smtplib.SMTP()
         server.connect('smtp.qiye.163.com')
-        server.login('peter.zhang@mathartsys.com','Zz651454')
-        server.sendmail(msg['from'], msg['to'],msg.as_string())
+        server.login('peter.zhang@mathartsys.com', 'Zz651454')
+        server.sendmail(msg['from'], strTo, msg.as_string())
         server.quit()
         print '发送成功'.encode('GBK')
     except Exception, e:
