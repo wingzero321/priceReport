@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 import sys
 
@@ -7,8 +7,8 @@ sys.setdefaultencoding('utf8')
 reload(sys)
 
 server_ip = '120.26.38.147'
-server_user = 'minkedong'
-server_passwd = 'mkd'
+server_user = 'peter.zhang'
+server_passwd = 'zhangzhi123'
 server_port = 22
 
 sender = 'lei.wang@mathartsys.com'
@@ -17,9 +17,9 @@ smtpserver = 'smtp.qiye.163.com'
 username = 'lei.wang@mathartsys.com'
 password = 'Walle19930215'
 
-filePath = 'D:\\project\\project-carNew\\priceReport'
-# filePath = 'D:\\work\\priceReport'
-linPath = '/home/minkedong/py_env/Malibu/daily_data'
+#filePath = 'D:\\project\\project-carNew\\priceReport'
+filePath = 'D:\\work\\priceReport'
+linPath = '/home/peter.zhang/py_env/Malibu/daily_data'
 
 markValue = {'默认值': 2000,
              '创酷': {'2016款 1.4T 手动两驱舒适天窗版': 8000, 
