@@ -40,7 +40,7 @@ def sendMail():
     try:
         server = smtplib.SMTP()
         server.connect('smtp.qiye.163.com')
-        server.login('peter.zhang@mathartsys.com', 'Zz651454')
+        server.login('xxxxxx@xxxxx.com', 'xxxxxxxxx')
         server.sendmail(msg['from'], strTo, msg.as_string())
         server.quit()
         print '发送成功'.encode('GBK')
